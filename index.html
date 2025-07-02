@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Outils Cybersécurité</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<h1>Outils Cybersécurité Simples</h1>
+
+<section id="password-generator">
+  <h2>Générateur de mot de passe fort</h2>
+  <label for="length">Longueur du mot de passe :</label>
+  <input type="number" id="length" min="6" max="64" value="16" />
+  <button id="generateBtn">Générer</button>
+  <div class="tooltip" style="margin-top:10px;">
+    <textarea id="generatedPassword" rows="2" readonly title="Cliquez pour copier"></textarea>
+    <span class="tooltiptext" id="copyTooltip">Copié !</span>
+  </div>
+</section>
+
+<section id="password-checker">
+  <h2>Vérificateur de force de mot de passe</h2>
+  <label for="passwordToCheck">Entrez un mot de passe :</label>
+  <input type="text" id="passwordToCheck" autocomplete="off" />
+  <button id="checkBtn">Vérifier</button>
+  <div class="result" id="checkResult"></div>
+</section>
+
+<section id="security-tips">
+  <h2>Conseils de cybersécurité</h2>
+  <ul>
+    <li>Utilise des mots de passe uniques et longs pour chaque compte.</li>
+    <li>Active l’authentification à deux facteurs (2FA) partout où c’est possible.</li>
+    <li>Ne clique pas sur des liens suspects ou dans des emails inconnus.</li>
+    <li>Garde tes logiciels et ton système à jour.</li>
+    <li>Utilise un gestionnaire de mots de passe fiable.</li>
+  </ul>
+</section>
+
+<section id="port-scan-simulation">
+  <h2>Simulation de scan de ports (limité)</h2>
+  <label for="host">Domaine ou IP :</label>
+  <input type="text" id="host" placeholder="exemple.com" autocomplete="off" />
+  <button id="scanBtn">Scanner (simulation)</button>
+  <div class="result" id="scanResult"></div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
