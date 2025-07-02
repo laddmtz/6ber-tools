@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  color: #e0e6f0;
+  margin: 0;
+  padding: 30px 20px;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  color: #5eead4;
+  font-weight: 700;
+  margin-bottom: 40px;
+  text-shadow: 0 0 10px #5eead4;
+}
+
+section {
+  background: rgba(255 255 255 / 0.07);
+  border-radius: 12px;
+  padding: 25px 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 20px rgb(94 234 212 / 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+section:hover {
+  box-shadow: 0 0 30px rgb(94 234 212 / 0.35);
+}
+
+h2 {
+  color: #5eead4;
+  margin-bottom: 15px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+label {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+input[type="number"],
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: none;
+  margin-top: 8px;
+  background: rgba(255 255 255 / 0.1);
+  color: #e0e6f0;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus,
+textarea:focus {
+  outline: none;
+  background: rgba(255 255 255 / 0.2);
+  box-shadow: 0 0 8px #5eead4;
+}
+
+button {
+  margin-top: 15px;
+  padding: 12px 22px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(90deg, #5eead4 0%, #28c6d8 100%);
+  color: #0f2027;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgb(46 212 230 / 0.5);
+  transition: background 0.3s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #28c6d8 0%, #5eead4 100%);
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+textarea {
+  resize: none;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+.result {
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background: rgba(94, 234, 212, 0.15);
+  color: #5eead4;
+  user-select: text;
+  min-height: 28px;
+}
+
+ul {
+  list-style-type: disc;
+  margin-left: 25px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #a0c4c5;
+}
+
+ul li {
+  margin-bottom: 8px;
+}
+
+a {
+  color: #5eead4;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Tooltip for copy confirmation */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #28c6d8;
+  color: #0f2027;
+  text-align: center;
+  border-radius: 6px;
+  padding: 6px 8px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -70px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 0.9rem;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
