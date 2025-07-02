@@ -3,51 +3,391 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Outils Cybersécurité</title>
-<link rel="stylesheet" href="style.css" />
+<title>Suite d'Outils Cybersécurité - 15 outils</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+  body {
+    margin:0; padding:20px;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color: #e0e6f0;
+  }
+  h1,h2 {
+    text-align:center;
+    text-shadow: 0 0 8px #5eead4;
+  }
+  section {
+    background: rgba(255 255 255 / 0.07);
+    border-radius: 12px;
+    padding: 20px 25px;
+    margin: 25px auto;
+    max-width: 600px;
+    box-shadow: 0 0 25px rgb(94 234 212 / 0.15);
+    transition: box-shadow 0.3s ease;
+  }
+  section:hover {
+    box-shadow: 0 0 40px rgb(94 234 212 / 0.35);
+  }
+  label {
+    font-weight: 600;
+    display: block;
+    margin-top: 12px;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    margin-top: 6px;
+    background: rgba(255 255 255 / 0.1);
+    color: #e0e6f0;
+    font-size: 1rem;
+    resize: vertical;
+  }
+  button {
+    margin-top: 12px;
+    background: linear-gradient(90deg,#5eead4 0%,#28c6d8 100%);
+    border: none;
+    border-radius: 30px;
+    padding: 12px 24px;
+    color: #0f2027;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgb(46 212 230 / 0.5);
+    transition: background 0.3s ease;
+    user-select: none;
+  }
+  button:hover {
+    background: linear-gradient(90deg,#28c6d8 0%,#5eead4 100%);
+  }
+  .result {
+    margin-top: 12px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: rgba(94, 234, 212, 0.15);
+    color: #5eead4;
+    user-select: text;
+    min-height: 28px;
+    white-space: pre-wrap;
+  }
+  textarea[readonly], input[readonly] {
+    cursor: pointer;
+    user-select: all;
+  }
+</style>
 </head>
 <body>
 
-<h1>Outils Cybersécurité Simples</h1>
+<h1>Suite d'Outils Cybersécurité</h1>
 
-<section id="password-generator">
-  <h2>Générateur de mot de passe fort</h2>
-  <label for="length">Longueur du mot de passe :</label>
-  <input type="number" id="length" min="6" max="64" value="16" />
-  <button id="generateBtn">Générer</button>
-  <div class="tooltip" style="margin-top:10px;">
-    <textarea id="generatedPassword" rows="2" readonly title="Cliquez pour copier"></textarea>
-    <span class="tooltiptext" id="copyTooltip">Copié !</span>
-  </div>
+<!-- 1. Générateur mot de passe -->
+<section>
+  <h2>1. Générateur de mot de passe fort</h2>
+  <label for="passLength">Longueur :</label>
+  <input type="number" id="passLength" min="6" max="64" value="16" />
+  <button id="generatePassBtn">Générer</button>
+  <textarea id="generatedPass" rows="2" readonly title="Cliquez pour copier"></textarea>
 </section>
 
-<section id="password-checker">
-  <h2>Vérificateur de force de mot de passe</h2>
-  <label for="passwordToCheck">Entrez un mot de passe :</label>
-  <input type="text" id="passwordToCheck" autocomplete="off" />
-  <button id="checkBtn">Vérifier</button>
-  <div class="result" id="checkResult"></div>
+<!-- 2. Vérificateur force mot de passe -->
+<section>
+  <h2>2. Vérificateur de force de mot de passe</h2>
+  <label for="passToCheck">Mot de passe :</label>
+  <input type="text" id="passToCheck" autocomplete="off" />
+  <button id="checkPassBtn">Vérifier</button>
+  <div class="result" id="checkPassResult"></div>
 </section>
 
-<section id="security-tips">
-  <h2>Conseils de cybersécurité</h2>
-  <ul>
-    <li>Utilise des mots de passe uniques et longs pour chaque compte.</li>
-    <li>Active l’authentification à deux facteurs (2FA) partout où c’est possible.</li>
-    <li>Ne clique pas sur des liens suspects ou dans des emails inconnus.</li>
-    <li>Garde tes logiciels et ton système à jour.</li>
-    <li>Utilise un gestionnaire de mots de passe fiable.</li>
-  </ul>
+<!-- 3. Générateur phrase de passe -->
+<section>
+  <h2>3. Générateur de phrase de passe</h2>
+  <label for="phraseWords">Nombre de mots :</label>
+  <input type="number" id="phraseWords" min="2" max="8" value="4" />
+  <button id="generatePhraseBtn">Générer</button>
+  <div class="result" id="phraseResult"></div>
 </section>
 
-<section id="port-scan-simulation">
-  <h2>Simulation de scan de ports (limité)</h2>
-  <label for="host">Domaine ou IP :</label>
-  <input type="text" id="host" placeholder="exemple.com" autocomplete="off" />
-  <button id="scanBtn">Scanner (simulation)</button>
+<!-- 4 & 5 Base64 encode / decode -->
+<section>
+  <h2>4 & 5. Encodeur / Décodeur Base64</h2>
+  <label for="base64Input">Texte :</label>
+  <textarea id="base64Input" rows="3" placeholder="Texte à encoder ou décoder"></textarea>
+  <button id="encodeBase64Btn">Encoder</button>
+  <button id="decodeBase64Btn">Décoder</button>
+  <div class="result" id="base64Result"></div>
+</section>
+
+<!-- 6. Hash MD5 -->
+<section>
+  <h2>6. Générateur Hash MD5</h2>
+  <label for="md5Input">Texte :</label>
+  <input type="text" id="md5Input" />
+  <button id="generateMd5Btn">Générer MD5</button>
+  <div class="result" id="md5Result"></div>
+</section>
+
+<!-- 7 & 8. ROT13 encode / decode -->
+<section>
+  <h2>7 & 8. Encodeur / Décodeur ROT13</h2>
+  <label for="rot13Input">Texte :</label>
+  <input type="text" id="rot13Input" />
+  <button id="encodeRot13Btn">Encoder ROT13</button>
+  <button id="decodeRot13Btn">Décoder ROT13</button>
+  <div class="result" id="rot13Result"></div>
+</section>
+
+<!-- 9 & 10. Texte ↔ Hex -->
+<section>
+  <h2>9 & 10. Convertisseur Texte ↔ Hexadécimal</h2>
+  <label for="hexInput">Texte / Hex :</label>
+  <textarea id="hexInput" rows="3" placeholder="Texte ou hex"></textarea>
+  <button id="toHexBtn">Texte → Hex</button>
+  <button id="toTextBtn">Hex → Texte</button>
+  <div class="result" id="hexResult"></div>
+</section>
+
+<!-- 11. Validation email -->
+<section>
+  <h2>11. Validation d'email</h2>
+  <label for="emailInput">Email :</label>
+  <input type="text" id="emailInput" placeholder="exemple@domaine.com" autocomplete="off" />
+  <button id="validateEmailBtn">Valider</button>
+  <div class="result" id="emailResult"></div>
+</section>
+
+<!-- 12. Validation URL -->
+<section>
+  <h2>12. Validation d'URL simple</h2>
+  <label for="urlInput">URL :</label>
+  <input type="text" id="urlInput" placeholder="https://exemple.com" autocomplete="off" />
+  <button id="validateUrlBtn">Valider</button>
+  <div class="result" id="urlResult"></div>
+</section>
+
+<!-- 13. Timestamp UNIX générateur / convertisseur -->
+<section>
+  <h2>13. Timestamp UNIX (générateur / convertisseur)</h2>
+  <label for="timestampInput">Timestamp (secondes) :</label>
+  <input type="number" id="timestampInput" placeholder="Ex: 1672531200" />
+  <button id="timestampToDateBtn">Convertir en date</button>
+  <div class="result" id="dateResult"></div>
+  <hr style="margin: 20px 0;">
+  <button id="generateTimestampBtn">Générer timestamp actuel</button>
+  <div class="result" id="timestampResult"></div>
+</section>
+
+<!-- 14. Scan de ports (simulation) -->
+<section>
+  <h2>14. Scan de ports (simulation)</h2>
+  <label for="scanHost">Domaine ou IP :</label>
+  <input type="text" id="scanHost" placeholder="exemple.com" />
+  <button id="scanPortsBtn">Scanner</button>
   <div class="result" id="scanResult"></div>
 </section>
 
-<script src="script.js"></script>
+<!-- 15. Recherche mots clés dans texte -->
+<section>
+  <h2>15. Recherche de mots clés dans un texte</h2>
+  <label for="textToScan">Texte :</label>
+  <textarea id="textToScan" rows="3" placeholder="Texte à analyser"></textarea>
+  <label for="keywordsInput">Mots clés (séparés par virgule) :</label>
+  <input type="text" id="keywordsInput" placeholder="ex: hacker,virus,faille" />
+  <button id="searchKeywordsBtn">Chercher</button>
+  <div class="result" id="keywordsResult"></div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/spark-md5@3.0.2/spark-md5.min.js"></script>
+<script>
+  // 1. Générateur mot de passe
+  const generatePassBtn = document.getElementById('generatePassBtn');
+  const generatedPass = document.getElementById('generatedPass');
+  const passLength = document.getElementById('passLength');
+  generatePassBtn.onclick = () => {
+    const len = Math.min(Math.max(6, +passLength.value), 64);
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()-_=+[]{}|;:,.<>?";
+    let pass = "";
+    for(let i=0;i<len;i++) pass += chars.charAt(Math.floor(Math.random()*chars.length));
+    generatedPass.value = pass;
+  };
+  generatedPass.onclick = () => {
+    if(!generatedPass.value) return;
+    generatedPass.select();
+    navigator.clipboard.writeText(generatedPass.value);
+  };
+
+  // 2. Vérificateur force mot de passe
+  const checkPassBtn = document.getElementById('checkPassBtn');
+  const passToCheck = document.getElementById('passToCheck');
+  const checkPassResult = document.getElementById('checkPassResult');
+  checkPassBtn.onclick = () => {
+    const pwd = passToCheck.value.trim();
+    if(!pwd) return checkPassResult.textContent = "Entrez un mot de passe.";
+    let score=0;
+    if(pwd.length>=8) score++;
+    if(/[A-Z]/.test(pwd)) score++;
+    if(/[a-z]/.test(pwd)) score++;
+    if(/[0-9]/.test(pwd)) score++;
+    if(/[^A-Za-z0-9]/.test(pwd)) score++;
+    const levels = [
+      "Très faible ❌", "Faible ❌", "Moyen ⚠️", "Fort 🔐", "Très fort 🔒"
+    ];
+    let message = score>=4 ? levels[4] : levels[score] || levels[0];
+    let color = ["#b71c1c","#f44336","#ff9800","#388e3c","#2e7d32"][score] || "#b71c1c";
+    checkPassResult.textContent = message;
+    checkPassResult.style.color = color;
+  };
+
+  // 3. Générateur phrase de passe
+  const generatePhraseBtn = document.getElementById('generatePhraseBtn');
+  const phraseWords = document.getElementById('phraseWords');
+  const phraseResult = document.getElementById('phraseResult');
+  const wordList = [
+    "cyber", "sécurité", "firewall", "hacker", "cryptage",
+    "serveur", "réseau", "virus", "pare-feu", "motdepasse",
+    "script", "attaque", "défense", "pirate", "données",
+    "système", "connexion", "algorithme", "protection", "authentification"
+  ];
+  generatePhraseBtn.onclick = () => {
+    const count = Math.min(Math.max(2,+phraseWords.value),8);
+    let phrase = [];
+    for(let i=0;i<count;i++) phrase.push(wordList[Math.floor(Math.random()*wordList.length)]);
+    phraseResult.textContent = phrase.join(" ");
+  };
+
+  // 4 & 5 Base64 encode / decode
+  const base64Input = document.getElementById('base64Input');
+  const base64Result = document.getElementById('base64Result');
+  document.getElementById('encodeBase64Btn').onclick = () => {
+    try {
+      base64Result.textContent = btoa(base64Input.value);
+    } catch {
+      base64Result.textContent = "Erreur d'encodage";
+    }
+  };
+  document.getElementById('decodeBase64Btn').onclick = () => {
+    try {
+      base64Result.textContent = atob(base64Input.value);
+    } catch {
+      base64Result.textContent = "Erreur de décodage";
+    }
+  };
+
+  // 6. Hash MD5 via SparkMD5
+  const md5Input = document.getElementById('md5Input');
+  const md5Result = document.getElementById('md5Result');
+  document.getElementById('generateMd5Btn').onclick = () => {
+    const text = md5Input.value.trim();
+    if(!text) return md5Result.textContent = "Entrez un texte.";
+    md5Result.textContent = SparkMD5.hash(text);
+  };
+
+  // 7 & 8. ROT13 encode / decode
+  function rot13(str) {
+    return str.replace(/[a-zA-Z]/g, c => {
+      const base = c <= 'Z' ? 65 : 97;
+      return String.fromCharCode(((c.charCodeAt(0) - base + 13) % 26) + base);
+    });
+  }
+  const rot13Input = document.getElementById('rot13Input');
+  const rot13Result = document.getElementById('rot13Result');
+  document.getElementById('encodeRot13Btn').onclick = () => {
+    rot13Result.textContent = rot13(rot13Input.value);
+  };
+  document.getElementById('decodeRot13Btn').onclick = () => {
+    rot13Result.textContent = rot13(rot13Input.value);
+  };
+
+  // 9 & 10. Texte ↔ Hex
+  const hexInput = document.getElementById('hexInput');
+  const hexResult = document.getElementById('hexResult');
+  function textToHex(text) {
+    return text.split('').map(c=>c.charCodeAt(0).toString(16).padStart(2,'0')).join('');
+  }
+  function hexToText(hex) {
+    try {
+      return hex.match(/.{1,2}/g).map(b=>String.fromCharCode(parseInt(b,16))).join('');
+    } catch {
+      return "Hex invalide";
+    }
+  }
+  document.getElementById('toHexBtn').onclick = () => {
+    hexResult.textContent = textToHex(hexInput.value);
+  };
+  document.getElementById('toTextBtn').onclick = () => {
+    hexResult.textContent = hexToText(hexInput.value.trim());
+  };
+
+  // 11. Validation email
+  const emailInput = document.getElementById('emailInput');
+  const emailResult = document.getElementById('emailResult');
+  document.getElementById('validateEmailBtn').onclick = () => {
+    const email = emailInput.value.trim();
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    emailResult.textContent = re.test(email) ? "Email valide ✅" : "Email invalide ❌";
+    emailResult.style.color = re.test(email) ? "#4caf50" : "#f44336";
+  };
+
+  // 12. Validation URL simple
+  const urlInput = document.getElementById('urlInput');
+  const urlResult = document.getElementById('urlResult');
+  document.getElementById('validateUrlBtn').onclick = () => {
+    const url = urlInput.value.trim();
+    try {
+      new URL(url);
+      urlResult.textContent = "URL valide ✅";
+      urlResult.style.color = "#4caf50";
+    } catch {
+      urlResult.textContent = "URL invalide ❌";
+      urlResult.style.color = "#f44336";
+    }
+  };
+
+  // 13. Timestamp UNIX
+  const timestampInput = document.getElementById('timestampInput');
+  const dateResult = document.getElementById('dateResult');
+  const generateTimestampBtn = document.getElementById('generateTimestampBtn');
+  const timestampResult = document.getElementById('timestampResult');
+  document.getElementById('timestampToDateBtn').onclick = () => {
+    const ts = parseInt(timestampInput.value);
+    if(isNaN(ts) || ts < 0) return dateResult.textContent = "Timestamp invalide";
+    const date = new Date(ts * 1000);
+    dateResult.textContent = date.toLocaleString();
+  };
+  generateTimestampBtn.onclick = () => {
+    const now = Math.floor(Date.now() / 1000);
+    timestampResult.textContent = now.toString();
+  };
+
+  // 14. Scan ports simulation
+  const scanHost = document.getElementById('scanHost');
+  const scanResult = document.getElementById('scanResult');
+  document.getElementById('scanPortsBtn').onclick = () => {
+    const host = scanHost.value.trim();
+    if(!host) return scanResult.textContent = "Entrez un domaine ou IP";
+    scanResult.textContent = "Scan en cours...";
+    // Simulation : ports communs ouverts/faux
+    setTimeout(() => {
+      const openPorts = [22, 80, 443, 3306, 8080];
+      scanResult.textContent = `Ports ouverts détectés sur ${host}:\n` + openPorts.join(", ");
+    }, 1500);
+  };
+
+  // 15. Recherche mots clés dans texte
+  const textToScan = document.getElementById('textToScan');
+  const keywordsInput = document.getElementById('keywordsInput');
+  const keywordsResult = document.getElementById('keywordsResult');
+  document.getElementById('searchKeywordsBtn').onclick = () => {
+    const text = textToScan.value.toLowerCase();
+    const keywords = keywordsInput.value.toLowerCase().split(',').map(k => k.trim()).filter(k => k);
+    if(!text) return keywordsResult.textContent = "Entrez un texte à analyser";
+    if(keywords.length === 0) return keywordsResult.textContent = "Entrez au moins un mot clé";
+    const found = keywords.filter(k => text.includes(k));
+    if(found.length === 0) keywordsResult.textContent = "Aucun mot clé trouvé";
+    else keywordsResult.textContent = "Mots clés trouvés : " + found.join(", ");
+  };
+</script>
+
 </body>
 </html>
